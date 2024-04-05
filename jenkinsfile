@@ -1,7 +1,9 @@
 
 pipeline {
-    agent { label "java-node" }
-
+    agent any
+    parameters {
+        choice(name: 'deploy_to', choices: ['dev', 'qa', 'prod'])
+    }
     stages {
         stage('checkout') {
             steps {
@@ -14,17 +16,20 @@ pipeline {
             }
         }
         stage('build') {
-           when{
-              branch "master"
+            when {
+                branch "main"
             }
             steps {
                 sh 'echo "building the code "'
             }
         }
         stage('deploy') {
+            when {
+                expression { params.deploy_to == 'prod' }
+            }
             steps {
-                echo "deploying into dev environment"
-                
+                echo "deploying into ${params.deploy_to} environment"
+                // Add actual deployment steps here
             }
         }
     }
