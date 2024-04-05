@@ -15,7 +15,7 @@ pipeline {
         }
         stage('build') {
            when{
-              branch "master"
+              branch "main"
             }
             steps {
                 sh 'echo "building the code "'
