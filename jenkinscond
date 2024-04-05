@@ -24,9 +24,12 @@ pipeline {
             }
         }
         stage('deploy') {
-                        steps {
-                echo "deploying into environment"
-              
+            when {
+                environment name: 'deploy_to', value: 'prod'
+            }
+            steps {
+                echo "deploying into ${params.deploy_to} environment"
+                // Add actual deployment steps here
             }
         }
     }
