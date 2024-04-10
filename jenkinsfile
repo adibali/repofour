@@ -13,6 +13,7 @@ pipeline {
         stage('test') {
             steps {
                 echo "running static test on code"
+                echo "i am adithya"
             }
         }
         stage('build') {
