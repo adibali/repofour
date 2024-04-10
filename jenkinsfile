@@ -23,6 +23,7 @@ pipeline {
             }
             steps {
                 sh 'echo "building the code "'
+                 sh 'echo "building the code "'
             }
         }
         stage('deploy') {
